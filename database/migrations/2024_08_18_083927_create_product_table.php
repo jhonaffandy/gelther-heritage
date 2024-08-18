@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->float('price');
-            $table->longText('desc');
+            $table->longText('description');
             $table->string('tags');
             $table->bigInteger('categories_id');
             $table->softDeletes();
