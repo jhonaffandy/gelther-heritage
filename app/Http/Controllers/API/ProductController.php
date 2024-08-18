@@ -20,10 +20,9 @@ class ProductController extends Controller
         $price_from = $request->input('price_from');
         $price_to = $request->input('price_to');
 
-        if($id)
-        {
-            $product = Product::with(['category','galleries'])->find($id);
-            if($product){
+        if ($id) {
+            $product = Product::with(['category', 'galleries'])->find($id);
+            if ($product) {
                 return ResponseFormatter::success(
                     $product,
                     'Data product berhasil diambil'
@@ -37,25 +36,25 @@ class ProductController extends Controller
             }
         }
 
-        $product =Product::with(['category','galleries']);
+        $product = Product::with(['category', 'galleries']);
 
-        if($name){
-            $product->where('name','LIKE','%' . $name . '%');
+        if ($name) {
+            $product->where('name', 'LIKE', '%' . $name . '%');
         }
-        if($desc){
-            $product->where('desc','LIKE','%' . $desc . '%');
+        if ($desc) {
+            $product->where('descriptions', 'LIKE', '%' . $desc . '%');
         }
-        if($tags){
-            $product->where('tags','LIKE','%' . $tags . '%');
+        if ($tags) {
+            $product->where('tags', 'LIKE', '%' . $tags . '%');
         }
-        if($price_from){
-            $product->where('price','>=', $price_from );
+        if ($price_from) {
+            $product->where('price', '>=', $price_from);
         }
-        if($price_to){
-            $product->where('price','<=', $price_to );
+        if ($price_to) {
+            $product->where('price', '<=', $price_to);
         }
-        if($categories){
-            $product->where('categories',$categories);
+        if ($categories) {
+            $product->where('categories', $categories);
         }
 
         return ResponseFormatter::success(
