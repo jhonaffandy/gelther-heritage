@@ -27,7 +27,7 @@ class User extends Authenticatable
         'name',
         'email',
         'username',
-        'phone_number',
+        'phone',
         'roles',
         'password',
     ];
@@ -68,6 +68,6 @@ class User extends Authenticatable
 
     public function transactions()
     {
-        return $this->hasMany(Transaction::class,'users_id','id');
+        return $this->hasMany(Transaction::class, 'users_id', 'id');
     }
 }
