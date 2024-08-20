@@ -13,6 +13,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
+
+
+
 class UserController extends Controller
 {
     public function register(Request $request)
@@ -107,5 +110,22 @@ class UserController extends Controller
     public function fetch(Request $request)
     {
         return ResponseFormatter::success($request->user(), 'Data Profile User Berhasil Diambil');
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $request->validate([
+            'name' => ['nullable', 'string', 'max:255'],
+            'username' => ['nullable', 'string', 'max:255', 'unique:users'],
+            'email' => ['nullable', 'string', 'max:255', 'email', 'unique:users'],
+            'phone' => ['nullable', 'string', 'max:255'],
+            'password' => ['nullable', 'string', new Password]
+        ]);
+
+        $data = $request->all();
+        $user = Auth::user();
+        $user->update($data);
+
+        return ResponseFormatter::success($user, 'user updated');
     }
 }
