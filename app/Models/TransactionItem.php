@@ -9,8 +9,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class TransactionItem extends Model
 {
 
-    use HasFactory,SoftDeletes;
-    
+    use HasFactory; //,SoftDeletes;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -25,6 +25,6 @@ class TransactionItem extends Model
 
     public function product()
     {
-        return $this->hasOne(Product::class,'id','product_id');
+        return $this->hasOne(Product::class, 'id', 'product_id');
     }
 }
